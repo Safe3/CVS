@@ -55,7 +55,7 @@
 
 ## 使用
 
-CVS由三部分组成：**CVS扫描器**、**PoC IDE**和**OOB服务器**。CVS扫描器用于读取森罗空间测绘引擎生成的扫描目标信息，并加载PoC进行漏洞扫描。PoC IDE用于编写和调试漏洞脚本以及生成PoC文件。OOB服务器用于反向连接平台，如一些没有回显的漏洞，以确认漏洞的存在。
+CVS由三部分组成：**CVS扫描器**、**PoC IDE**和**OOB服务器**。CVS扫描器用于读取森罗空间测绘引擎生成的扫描目标信息，并加载PoC进行漏洞扫描。PoC IDE用于编写和调试漏洞脚本以及生成PoC文件。OOB服务器用于反向连接平台，如一些没有回显的漏洞，以确认漏洞的存在。VDSL语法可以参考https://github.com/Safe3/CVS/blob/main/VDSL_CN.md 。
 
 
 ### 编写PoC
@@ -65,14 +65,13 @@ CVS由三部分组成：**CVS扫描器**、**PoC IDE**和**OOB服务器**。CVS�
 ```sh
 ide.exe
 ```
-浏览器打开http://127.0.0.1:777/即可看到PoC开发环境，该IDE提供了PoC的编写、调试和保存等功能，并支持代码补全和智能提示，如下图所示：
+浏览器打开http://127.0.0.1:777/ 即可看到PoC开发环境，该IDE提供了PoC的编写、调试和保存等功能，并支持代码补全和智能提示，如下图所示：
 
 <h3 align="center">
   <img src="https://github.com/Safe3/CVS/blob/main/ide.png" alt="IDE" width="700px">
   <br>
 </h3>
-
-上图右上角分别为运行、保存、刷新按钮，运行按钮用于调试PoC脚本，该脚本语法类似golang，图中**cvs结构体**在CVS扫描器中会自动根据target.json生成，无需实现，仅在调试时方便测试，自行声明。此图展示的是CVE-2022-46169无回显漏洞测试脚本的编写过程，图中提供了**debug函数**用于打印调试信息，该函数兼容go语言中fmt.Printf的用法，结果显示于下方方框。对于有回显的漏洞可以直接通过**return true**返回来确认漏洞存在，对于需要返回一些信息的场景，如密码破解等，可以return一个字符串来保存结果，结果位于CVS扫描器生成的result.json中的info字段中。PoC脚本中的函数兼容Nuclei的帮助函数，详见https://docs.projectdiscovery.io/templates/reference/helper-functions，所以可以很方便的将Nuclei的漏洞模板转换成CVS的PoC。更多PoC样例可参考CVS扫描器poc目录下的yaml文件。
+上图右上角分别为运行、保存、刷新按钮，运行按钮用于调试PoC脚本，该脚本语法类似golang，图中**cvs结构体**在CVS扫描器中会自动根据target.json生成，无需实现，仅在调试时方便测试，自行声明。此图展示的是CVE-2022-46169无回显漏洞测试脚本的编写过程，图中提供了**debug函数**用于打印调试信息，该函数兼容go语言中fmt.Printf的用法，结果显示于下方方框。对于有回显的漏洞可以直接通过**return true**返回来确认漏洞存在，对于需要返回一些信息的场景，如密码破解等，可以return一个字符串来保存结果，结果位于CVS扫描器生成的result.json中的info字段中。PoC脚本中的函数兼容Nuclei的帮助函数，详见https://docs.projectdiscovery.io/templates/reference/helper-functions ，另外CVS也提供了网络请求相关lib库，详见https://github.com/Safe3/CVS/blob/main/library.md 。所以你可以很方便的将Nuclei的漏洞模板转换成CVS的PoC。更多PoC样例可参考CVS扫描器poc目录下的yaml文件。
 
 ### 架设OOB服务器
 
@@ -92,7 +91,7 @@ ssl: false
 log_level: info 
 ```
 
-4.放开服务器的80、53、33333端口访问，并将OOB服务器设置为NS解析服务器，如阿里云上的域名可以参考https://help.aliyun.com/zh/dws/user-guide/custom-dns-host进行配置
+4.放开服务器的80、53、33333端口访问，并将OOB服务器设置为NS解析服务器，如阿里云上的域名可以参考https://help.aliyun.com/zh/dws/user-guide/custom-dns-host 进行配置
 
 ### 开启CVS扫描器
 
