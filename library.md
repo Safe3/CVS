@@ -43,12 +43,12 @@ debug("data: %s",string(data))
 ## Net
 
 - `close() => error`: close the socket.
-- `read(out bytes) => int/error`: read once data from socket into parameter out and return read length,
+- `read(out bytes) => int/error`: read data once from socket into parameter out and return read length,
   rendering it unusable in the future.
-- `write(data bytes) => int/error`: write once data to the socket and return written length.
+- `write(data bytes) => int/error`: write data once to the socket and return written length.
 - `set_read_deadline(seconds int) => error`:  set read timeout for read function.
 - `set_write_deadline(seconds int) => error`:  set write timeout for write function.
-- `read_all(maxlen int) => bytes/error`: read the max length data from socket if possible,the maxlen parameter is optional.
+- `read_all(maxlen int) => bytes/error`: read data from socket until the max length is reached,this parameter is optional.
 - `read_until(pattern string) => bytes/error`: read data from socket until the regex pattern is matched.
 
 - `write_all(data bytes) => int/error`: write all data to the socket if possible and return written length.
