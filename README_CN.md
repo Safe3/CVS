@@ -71,6 +71,7 @@ ide.exe
   <img src="https://github.com/Safe3/CVS/blob/main/ide.png" alt="IDE" width="700px">
   <br>
 </h3>
+
 上图右上角分别为运行、保存、刷新按钮，运行按钮用于调试PoC脚本，该脚本语法类似golang，图中 **cvs结构体** 在CVS扫描器中会自动根据target.json生成，无需实现，仅在调试时方便测试，自行声明。
 
 此图展示的是CVE-2022-46169无回显漏洞测试脚本的编写过程，图中提供了 **debug函数** 用于打印调试信息，该函数兼容go语言中fmt.Printf的用法，结果显示于下方方框。对于有回显的漏洞可以直接通过 **return true** 返回来确认漏洞存在，对于需要返回一些信息的场景，如密码破解等，可以return一个字符串来保存结果，结果位于CVS扫描器生成的result.json中的info字段中。
