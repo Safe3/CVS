@@ -258,41 +258,41 @@ b4 := bool(1)         // true
 c5 := char("X")       // 'X'
 ```
 
-## 操作符
+## 运算符
 
-### 单目运算符
+### 一元运算符
 
-| Operator | Usage | Types |
+| 运算符 | 用法 | 类型 |
 | :---: | :---: | :---: |
-| `+`   | same as `0 + x` | int, float |
-| `-`   | same as `0 - x` | int, float |
-| `!`   | logical NOT | all types* |
-| `^`   | bitwise complement | int |
+| `+`   | 等同 `0 + x` | int, float |
+| `-`   | 等同 `0 - x` | int, float |
+| `!`   | 逻辑非 | all types* |
+| `^`   | 按位异或 | int |
 
 在VDSL中，所有值都可以是真值也可以是假值
 
-### Binary Operators
+### 二元运算符
 
-| Operator | Usage | Types |
+| 运算符 | 用法 | 类型 |
 | :---: | :---: | :---: |
-| `==` | equal | all types |
-| `!=` | not equal | all types |
-| `&&` | logical AND | all types |
-| `\|\|` | logical OR | all types |
-| `+`   | add/concat | int, float, string, char, time, array |
-| `-`   | subtract | int, float, char, time |
-| `*`   | multiply | int, float |
-| `/`   | divide | int, float |
-| `&`   | bitwise AND | int |
-| `\|`   | bitwise OR | int |
-| `^`   | bitwise XOR | int |
-| `&^`   | bitclear (AND NOT) | int |
-| `<<`   | shift left | int |
-| `>>`   | shift right | int |
-| `<`   | less than | int, float, char, time, string |
-| `<=`   | less than or equal to | int, float, char, time, string |
-| `>`   | greater than | int, float, char, time, string |
-| `>=`   | greater than or equal to | int, float, char, time, string |
+| `==` | 检查两个值是否相等 | all types |
+| `!=` | 检查两个值是否不相等 | all types |
+| `&&` | 逻辑 AND 运算符 | all types |
+| `\|\|` | 逻辑 OR 运算符 | all types |
+| `+`   | 相加/字符串连接 | int, float, string, char, time, array |
+| `-`   | 相减 | int, float, char, time |
+| `*`   | 相乘 | int, float |
+| `/`   | 相除 | int, float |
+| `&`   | 按位与运算符 | int |
+| `\|`   | 按位或运算符 | int |
+| `^`   | 按位异或运算符 | int |
+| `&^`   | 位清除（AND NOT） | int |
+| `<<`   | 左移运算符 | int |
+| `>>`   | 右移运算符 | int |
+| `<`   | 检查左边值是否小于右边值 | int, float, char, time, string |
+| `<=`   | 检查左边值是否小于等于右边值 | int, float, char, time, string |
+| `>`   | 检查左边值是否大于右边值 | int, float, char, time, string |
+| `>=`   | 检查左边值是否大于等于右边值 | int, float, char, time, string |
 
 ### 三目操作符
 
@@ -309,7 +309,7 @@ b := min(5, 10)      // b == 5
 
 ### 赋值和增量运算符
 
-| Operator | Usage |
+| 运算符 | 用法 |
 | :---: | :---: |
 | `+=` | `(lhs) = (lhs) + (rhs)` |
 | `-=` | `(lhs) = (lhs) - (rhs)` |
@@ -478,8 +478,6 @@ export func(x) {
 
 [^note]:
     如果在Go中使用VDSL作为库，则可以自定义文件扩展名“`.dsl`”。在这种情况下，请使用“Compiler”类型的“SetImportFileExt”函数。
-    
-    请参阅[转到参考](https://pkg.go.dev/dsl)详细信息。
 
 在VDSL中，模块与函数非常相似。
 
@@ -515,15 +513,15 @@ a := 5    // line comments
 与Go不同，VDSL没有以下功能：
 
 - Declarations
-- Imaginary values
+- Imaginary 值
 - Structs
 - Pointers
 - Channels
 - Goroutines
-- Tuple assignment
-- Variable parameters
-- Switch statement
-- Goto statement
-- Defer statement
+- Tuple 赋值
+- Variable 参数
+- Switch 语句
+- Goto 语句
+- Defer 语句
 - Panic
-- Type assertion
+- Type 断言
