@@ -31,7 +31,7 @@ func() { /*...*/ }    // function 值
 | bytes | 字节数组 | `[]byte` |
 | error | [错误](#error-values) 值 | - |
 | time | 时间值 | `time.Time` |
-| array | 值数组_(可变 )_ | `[]any` |
+| array | 值数组 _(可变 )_ | `[]any` |
 | const array | [常量](#const-values) 数组 | - |
 | map | 具有字符串键的值映射 _(可变)_ | `map[string]any` |
 | const map | [常量](#const-values) 映射 | - |
@@ -434,7 +434,7 @@ for {
 
 ### For-In 语句
 
-VDSL中新增了“For In”语句。它类似于Go的“for range”语句。
+VDSL中新增了“for in”语句。它类似于Go的“for range”语句。
 
 “For In”语句可以迭代任何可迭代的值类型(数组、映射、字节、字符串、nil)。
 
