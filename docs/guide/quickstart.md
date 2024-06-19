@@ -30,8 +30,8 @@ curl https://slwx.uusec.com/download/slwx.tgz -o slwx.tgz && sudo tar -zxf slwx.
 ```json
 {
  "ip": "0.0.0.0",                               //管理端绑定的ip
- "port": "443",                                 //管理端绑定的端口
- "auto_ssl": true,                              //是否开启自动获取免费ssl证书，确保此时端口为443
+ "port": "80",                                  //管理端绑定的端口
+ "auto_ssl": false,                             //是否开启自动获取免费ssl证书，确保此时端口为443
  "sql_driver": "sqlite",                        //数据库选项，值sqlite或mysql
  "dsn": "/root/slwx/data.db",                   //sqlite数据库文件路径或mysql数据库dsn连接信息
  "jwt_key": "wLTI1GG5vPb6R3nE5FLcmQGzg4afzQsN", //网站jwt认证密钥
@@ -49,5 +49,5 @@ slwx/slwx &
 
 1.将域名dns指向森罗服务器ip
 
-2.访问https://yourdomain ，默认登录用户名admin，密码Passw0rd!。
+2.访问http://yourdomain ，默认登录用户名admin，密码Passw0rd!。
 
