@@ -9,7 +9,7 @@
      - [<span class="iconfont icon-crown"></span> OOB架设](guide/handbook#lemon-OOB架设)
      - [<span class="iconfont icon-matrix"></span> 规则编写](guide/handbook#melon-规则编写)
      - [<span class="iconfont icon-intro1"></span> VDSL语法](guide/VDSL_CN.md)
-     - [<span class="iconfont icon-intro1"></span> VDSL lib库](guide/library_CN.md)
+     - [<span class="iconfont icon-pack"></span> VDSL lib库](guide/library_CN.md)
   - [<span class="iconfont icon-alert"></span> 贡献捐赠](guide/contribute.md)
   - [<span class="iconfont icon-nut"></span> 常见问题](guide/problems.md)
   - [<span class="iconfont icon-discord"></span> 加入讨论](guide/discuss.md)
