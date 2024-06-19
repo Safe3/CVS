@@ -31,6 +31,7 @@ curl https://slwx.uusec.com/download/slwx.tgz -o slwx.tgz && sudo tar -zxf slwx.
 {
  "ip": "0.0.0.0",                               //管理端绑定的ip
  "port": "80",                                  //管理端绑定的端口
+ "domain":"",                                   //管理端绑定的域名
  "auto_ssl": false,                             //是否开启自动获取免费ssl证书，确保此时端口为443
  "sql_driver": "sqlite",                        //数据库选项，值sqlite或mysql
  "dsn": "/root/slwx/data.db",                   //sqlite数据库文件路径或mysql数据库dsn连接信息
