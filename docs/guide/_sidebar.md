@@ -1,0 +1,14 @@
+- <span class="iconfont icon-atom"></span> 指南
+  - [<span class="iconfont icon-fly"></span> 产品简介](guide/)
+     - [<span class="iconfont icon-page"></span> 技术优势](guide/#dart-技术优势)
+     - [<span class="iconfont icon-mix"></span> 界面预览](guide/#art-界面预览)
+  - [<span class="iconfont icon-wxapp"></span> 快速开始](guide/quickstart.md)
+     - [<span class="iconfont icon-component"></span> 配置要求](guide/quickstart#hotsprings-配置要求)
+     - [<span class="iconfont icon-install"></span> 安装使用](guide/quickstart#rocket-安装使用)
+  - [<span class="iconfont icon-router"></span> 使用手册](guide/handbook.md)
+     - [<span class="iconfont icon-crown"></span> OOB架设](guide/begin#lemon-OOB架设)
+     - [<span class="iconfont icon-matrix"></span> 规则编写](guide/begin#melon-规则编写)
+  - [<span class="iconfont icon-alert"></span> 贡献捐赠](guide/contribute.md)
+  - [<span class="iconfont icon-nut"></span> 常见问题](guide/problems.md)
+  - [<span class="iconfont icon-discord"></span> 加入讨论](guide/discuss.md)
+
