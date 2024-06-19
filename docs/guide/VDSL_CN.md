@@ -8,7 +8,7 @@ VDSL的语法设计为Go开发人员所熟悉，同时更简单、更精简。
 
 在VDSL中，一切都是一个值，并且所有值都与一个类型相关联。
 
-```golang
+```go
 11 + 22               // int 值
 "aa" + `bb`     // string 值
 -1.22 + 3e9          // float 值
@@ -43,7 +43,7 @@ func() { /*...*/ }    // function 值
 
 在VDSL中，可以使用“error”类型的值来表示错误。一个错误值是使用“error”表达式创建的，并且它必须有一个底层值可以使用`.value`访问错误值的基础值选择器。
 
-```golang
+```go
 err1 := error("oops")    // error with string value
 err2 := error(1+2+3)     // error with int value
 if is_error(err1) {      // 'is_error' builtin function
@@ -55,7 +55,7 @@ if is_error(err1) {      // 'is_error' builtin function
 
 在VDSL中，基本上所有的值(除了数组和映射)都是常量。
 
-```golang
+```go
 s := "12345"
 s[1] = 'b'    // illegal: String is const
 
@@ -65,14 +65,14 @@ a[1] = "two"  // ok: a is now [1, "two", 3]
 
 可以使用“const”表达式将数组或映射值设为const。
 
-```golang
+```go
 b := const([1, 2, 3])
 b[1] = "foo"  // illegal: 'b' references to an const array.
 ```
 
 请注意，将新值重新分配给变量与值不变性不冲突。
 
-```golang
+```go
 s := "abc"
 s = "foo"                  // ok
 a := const([1, 2, 3])
@@ -81,7 +81,7 @@ a = false                  // ok
 
 请注意，如果复制(使用“copy”内置函数)常量值将返回一个“可变”副本。此外，不变性不适用于数组或映射值的各个元素，除非它们是显式生成的常量。
 
-```golang
+```go
 a := const({b: 4, c: [1, 2, 3]})
 a.b = 5        // illegal
 a.c[1] = 5     // ok: because 'a.c' is not const
@@ -98,7 +98,7 @@ a.c[1] = 5     // illegal
 - 如果键或索引不存在，则复合值类型的索引器或选择器可能返回`nil`。
 - 如果转换失败，没有默认值的类型转换内置函数将返回“nil”。
 
-```golang
+```go
 a := func() { b := 4 }()    // a == nil
 b := [1, 2, 3][10]          // b == nil
 c := {a: "foo"}["b"]        // c == nil
@@ -109,7 +109,7 @@ d := int("foo")             // d == nil
 
 在VDSL中，数组是任何类型的值的有序列表。可以使用索引器“[]”访问数组的元素。
 
-```golang
+```go
 [1, 2, 3][0]       // == 1
 [1, 2, 3][2]       // == 3
 [1, 2, 3][3]       // == nil
@@ -121,7 +121,7 @@ d := int("foo")             // d == nil
 
 在VDSL中，map是一组键值对，其中key是字符串，value是任何值类型。可以使用索引器“[]”或选择器“”访问映射的值操作员。
 
-```golang
+```go
 m := { a: 1, b: false, c: "foo" }
 m["b"]                                // == false
 m.c                                   // == "foo"
@@ -134,7 +134,7 @@ m.x                                   // == nil
 
 在VDSL中，函数是一个具有多个函数参数和一个返回值的可调用值。就像任何其他值一样，函数可以传递到另一个函数中，也可以从该函数返回。
 
-```golang
+```go
 my_func := func(arg1, arg2) {
   return arg1 + arg2
 }
@@ -148,7 +148,7 @@ nine := add5(4)    // == 9
 
 与Go不同，VDSL没有声明。因此，以下代码是非法的：
 
-```golang
+```go
 func my_func(arg1, arg2) {  // illegal
   return arg1 + arg2
 }
@@ -156,7 +156,7 @@ func my_func(arg1, arg2) {  // illegal
 
 VDSL还支持可变函数/闭包：
 
-```golang
+```go
 variadic := func (a, b, ...c) {
   return [a, b, c]
 }
@@ -172,21 +172,21 @@ variadicClosure(1)(2, 3, 4) // [1, 2, [3, 4]]
 
 只有最后一个参数可以是可变的。以下代码也是非法的：
 
-```golang
+```go
 // illegal, because a is variadic and is not the last parameter
 illegal := func(a..., b) { /*... */ }
 ```
 
 调用函数时，传递参数的数量必须与该函数定义相匹配。
 
-```golang
+```go
 f := func(a, b) {}
 f(1, 2, 3) // Runtime Error: wrong number of arguments: want=2, got=3
 ```
 
 像Go一样，您可以使用省略号“…”要传递数组类型值作为其最后一个参数：
 
-```golang
+```go
 f1 := func(a, b, c) { return a + b + c }
 f1([1, 2, 3]...)    // => 6
 f1(1, [2, 3]...)    // => 6
@@ -209,7 +209,7 @@ f2([1, 2, 3]...)    // valid; a = 1, b = [2, 3]
 
 变量在全局范围(在函数外部定义)或本地范围(在功能内部定义)中定义。
 
-```golang
+```go
 a := "foo"      // define 'a' in global scope
 
 func() {        // function scope A
@@ -240,7 +240,7 @@ a := {d: 2}     // illegal: 'a' is already defined in the same scope
 
 与Go不同，可以为变量指定不同类型的值。
 
-```golang
+```go
 a := 123        // assigned    'int'
 a = "123"       // re-assigned 'string'
 a = [1, 2, 3]   // re-assigned 'array'
@@ -250,7 +250,7 @@ a = [1, 2, 3]   // re-assigned 'array'
 
 虽然VDSL中没有直接指定类型，但可以使用类型转换在值类型之间进行转换。
 
-```golang
+```go
 s1 := string(1984)    // "1984"
 i2 := int("-999")     // -999
 f3 := float(-51)      // -51.0
@@ -298,7 +298,7 @@ c5 := char("X")       // 'X'
 
 VDSL有一个三元条件运算符`(条件表达式)?(true表达式):(false表达式)`。
 
-```golang
+```go
 a := true ? 1 : -1    // a == 1
 
 min := func(a, b) {
@@ -345,7 +345,7 @@ b := min(5, 10)      // b == 5
 
 可以使用选择器(`.`)和索引器(`[]`)运算符来读取或写入复合类型(数组、映射、字符串、字节)的元素。
 
-```golang
+```go
 ["one", "two", "three"][1]  // == "two"
 
 m := {
@@ -365,7 +365,7 @@ m.x.y.z          // == nil
 
 与Go一样，可以对数组、字符串、字节等序列值类型使用切片运算符“[:]”。
 
-```golang
+```go
 a := [1, 2, 3, 4, 5][1:3]    // == [2, 3]
 b := [1, 2, 3, 4, 5][3:]     // == [4, 5]
 c := [1, 2, 3, 4, 5][:3]     // == [1, 2, 3]
@@ -375,14 +375,14 @@ c := [1, 2, 3, 4, 5][-1:10]  // == [1, 2, 3, 4, 5]
 
 **注意：关键字不能用作选择器**
 
-```golang
+```go
 a := {in: true} // Parse Error: expected map key, found 'in'
 a.func = ""     // Parse Error: expected selector, found 'func'
 ```
 
 使用双引号和索引器将关键字与映射一起使用。
 
-```golang
+```go
 a := {"in": true}
 a["func"] = ""
 ```
@@ -393,7 +393,7 @@ a["func"] = ""
 
 “If”语句与Go非常相似。
 
-```golang
+```go
 if a < 0 {
   // execute if 'a' is negative
 } else if a == 0 {
@@ -405,7 +405,7 @@ if a < 0 {
 
 与Go一样，条件表达式前面可能有一个简单的语句，该语句在计算表达式之前执行。
 
-```golang
+```go
 if a := foo(); a < 0 {
   // execute if 'a' is negative
 }
@@ -415,7 +415,7 @@ if a := foo(); a < 0 {
 
 “For”语句与Go非常相似。
 
-```golang
+```go
 // for (init); (condition); (post) {}
 for a:=0; a<10; a++ {
   // ...
@@ -438,7 +438,7 @@ VDSL中新增了“for in”语句。它类似于Go的“for range”语句。
 
 “For In”语句可以迭代任何可迭代的值类型(数组、映射、字节、字符串、nil)。
 
-```golang
+```go
 for v in [1, 2, 3] {          // array: element
   // 'v' is value
 }
@@ -458,14 +458,14 @@ for k, v in {k1: 1, k2: 2} {  // map: key and value
 
 主模块:
 
-```golang
+```go
 sum := import("./sum")  // load module from a local file
 fmt.print(sum(10))      // module function
 ```
 
 “sum.dsl”文件中的另一个模块:
 
-```golang
+```go
 base := 5
 
 export func(x) {
@@ -491,7 +491,7 @@ export func(x) {
 
 此外，您还可以使用“import”表达式来加载标准库。
 
-```golang
+```go
 math := import("math")
 a := math.abs(-19.84)  // == 19.84
 ```
@@ -500,7 +500,7 @@ a := math.abs(-19.84)  // == 19.84
 
 与Go一样，VDSL支持行注释(`//…`)和块注释(`/* ... */`).
 
-```golang
+```go
 /*
   multi-line block comments
 */
