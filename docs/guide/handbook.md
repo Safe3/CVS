@@ -73,7 +73,7 @@ cvs结构体示例：
   "http_iconhash": 0,
   "tls_info": null,
   "oob_url": "",
-  "oob_dns": "",
+  "oob_dns": ""
 }
 ```
 
