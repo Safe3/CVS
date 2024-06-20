@@ -257,7 +257,7 @@ v := time(1257894000) // 2009-11-10 23:00:00 +0000 UTC
 对字符串进行base64编码。
 
 ```go
-base64("Hello")
+base64("Hello") //SGVsbG8=
 ```
 
 ## base64_decode(src interface) bytes
@@ -265,7 +265,7 @@ base64("Hello")
 对字符串进行base64解码。
 
 ```go
-base64_decode("SGVsbG8=")
+base64_decode("SGVsbG8=") //Hello
 ```
 
 ## base64_py(src interface) string
@@ -273,7 +273,7 @@ base64_decode("SGVsbG8=")
 像python一样将字符串编码为base64（使用新行）。
 
 ```go
-base64_py("Hello")
+base64_py("Hello") //SGVsbG8=\n
 ```
 
 ## compare_versions(versionToCheck string, constraints …string) bool
@@ -281,7 +281,7 @@ base64_py("Hello")
 将第一个版本参数与提供的约束进行比较。
 
 ```go
-compare_versions('v1.0.0', '\>v0.0.1', '\<v1.0.1')
+compare_versions('v1.0.0', '\>v0.0.1', '\<v1.0.1') //true
 ```
 
 ## contains(input, substring interface) bool
@@ -289,7 +289,7 @@ compare_versions('v1.0.0', '\>v0.0.1', '\<v1.0.1')
 验证字符串是否包含子字符串。
 
 ```go
-contains("Hello", "lo")
+contains("Hello", "lo") //true
 ```
 
 ## contains_all(input interface, substrings …string) bool
@@ -297,7 +297,7 @@ contains("Hello", "lo")
 验证任何输入是否包含所有子字符串。
 
 ```go
-contains_all("Hello everyone", "lo", "every")
+contains_all("Hello everyone", "lo", "every") //true
 ```
 
 ## contains_any(input interface, substrings …string) bool
@@ -305,7 +305,7 @@ contains_all("Hello everyone", "lo", "every")
 验证输入是否包含任何子字符串。
 
 ```go
-contains_any("Hello everyone", "abc", "llo")
+contains_any("Hello everyone", "abc", "llo") //true
 ```
 
 ## date_time(format string, optionalUnixTime interface) string
@@ -313,7 +313,7 @@ contains_any("Hello everyone", "abc", "llo")
 使用简化或go样式布局返回当前或给定unix时间的格式化日期时间。
 
 ```go
-date_time("%Y-%M-%D %H:%m")
+date_time("%Y-%M-%D %H:%m") //2022-06-10 14:18
 date_time("%Y-%M-%D %H:%m", 1654870680)
 date_time("2006-01-02 15:04", unix_time())
 ```
@@ -323,7 +323,7 @@ date_time("2006-01-02 15:04", unix_time())
 检查字符串是否以提供的任何子字符串结尾。
 
 ```go
-ends_with("Hello", "lo")
+ends_with("Hello", "lo") //true
 ```
 
 ## generate_java_gadget(gadget, cmd, encoding interface) string
@@ -331,7 +331,7 @@ ends_with("Hello", "lo")
 生成Java反序列化小工具。
 
 ```go
-generate_java_gadget("dns", "{{interactsh-url}}", "base64")
+generate_java_gadget("dns", "{{interactsh-url}}", "base64") //rO0ABXNyABFqYXZhLnV0aWwuSGFzaE1hcAUH2sHDFmDRAwACRgAKbG9hZEZhY3RvckkACXRocmVzaG9sZHhwP0AAAAAAAAx3CAAAABAAAAABc3IADGphdmEubmV0LlVSTJYlNzYa/ORyAwAHSQAIaGFzaENvZGVJAARwb3J0TAAJYXV0aG9yaXR5dAASTGphdmEvbGFuZy9TdHJpbmc7TAAEZmlsZXEAfgADTAAEaG9zdHEAfgADTAAIcHJvdG9jb2xxAH4AA0wAA3JlZnEAfgADeHD//////////3QAAHQAAHEAfgAFdAAFcHh0ACpjYWhnMmZiaW41NjRvMGJ0MHRzMDhycDdlZXBwYjkxNDUub2FzdC5mdW54
 ```
 
 ## generate_jwt(json, algorithm, signature, unixMaxAge) string
@@ -339,7 +339,7 @@ generate_java_gadget("dns", "{{interactsh-url}}", "base64")
 使用JSON字符串中提供的声明、签名和指定的算法生成JSON Web令牌（JWT）。
 
 ```go
-generate_jwt("{\"name\":\"John Doe\",\"foo\":\"bar\"}", "HS256", "hello-world")
+generate_jwt("{\"name\":\"John Doe\",\"foo\":\"bar\"}", "HS256", "hello-world") //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJuYW1lIjoiSm9obiBEb2UifQ.EsrL8lIcYJR_Ns-JuhF3VCllCP7xwbpMCCfHin_WT6U
 ```
 
 ## hex_decode(input interface) bytes
@@ -347,7 +347,7 @@ generate_jwt("{\"name\":\"John Doe\",\"foo\":\"bar\"}", "HS256", "hello-world")
 十六进制解码给定的输入。
 
 ```go
-hex_decode("6161")
+hex_decode("6161") //aa
 ```
 
 ## hex_encode(input interface) string
@@ -355,7 +355,7 @@ hex_decode("6161")
 十六进制编码给定的输入。
 
 ```go
-hex_encode("aa")
+hex_encode("aa") //6161
 ```
 
 ## hmac(algorithm, data, secret) string
@@ -363,7 +363,7 @@ hex_encode("aa")
 hmac函数，它接受具有数据和机密的哈希函数类型。
 
 ```go
-hmac("sha1", "test", "scrt")
+hmac("sha1", "test", "scrt") //8856b111056d946d5c6c92a21b43c233596623c6
 ```
 
 ## html_escape(input interface) string
@@ -371,7 +371,7 @@ hmac("sha1", "test", "scrt")
 HTML转义给定的输入。
 
 ```go
-html_escape("\<body\>test\</body\>")
+html_escape("\<body\>test\</body\>") //&lt;body&gt;test&lt;/body&gt;
 ```
 
 ## html_unescape(input interface) string
@@ -379,7 +379,7 @@ html_escape("\<body\>test\</body\>")
 HTML取消转义给定的输入。
 
 ```go
-html_unescape("&lt;body&gt;test&lt;/body&gt;")
+html_unescape("&lt;body&gt;test&lt;/body&gt;") //\<body\>test\</body\>
 ```
 
 ## json_minify(json) string
@@ -403,7 +403,7 @@ json_prettify("{\"foo\":\"bar\",\"name\":\"John Doe\"}")
 计算输入的MD5（消息摘要）哈希。
 
 ```go
-md5("Hello")
+md5("Hello") //8b1a9953c4611296a827abf8c47804d7
 ```
 
 ## mmh3(input interface) string
@@ -411,7 +411,7 @@ md5("Hello")
 计算输入的MMH3（MurmurHash3）哈希。
 
 ```go
-mmh3("Hello")
+mmh3("Hello") //316307400
 ```
 
 ## rand_base(length uint, optionalCharSet string) string
@@ -419,7 +419,7 @@ mmh3("Hello")
 从可选字符集生成给定长度的随机字符串序列（默认为字母和数字）。
 
 ```go
-rand_base(5, "abc")
+rand_base(5, "abc") //caccb
 ```
 
 ## rand_int(optionalMin, optionalMax uint) int
@@ -427,7 +427,7 @@ rand_base(5, "abc")
 生成给定可选限制之间的随机整数（默认为0-MaxInt32）。
 
 ```go
-rand_int(1, 10)
+rand_int(1, 10) //6
 ```
 
 ## rand_text_alpha(length uint, optionalBadChars string) string
@@ -435,7 +435,7 @@ rand_int(1, 10)
 生成给定长度的随机字母字符串，不包括可选的剪切集字符。
 
 ```go
-rand_text_alpha(10, "abc")
+rand_text_alpha(10, "abc") //WKozhjJWlJ
 ```
 
 ## rand_text_alphanumeric(length uint, optionalBadChars string) string
@@ -443,7 +443,7 @@ rand_text_alpha(10, "abc")
 生成一个给定长度的随机字母数字字符串，不包含可选的剪切集字符。
 
 ```go
-rand_text_alphanumeric(10, "ab12")
+rand_text_alphanumeric(10, "ab12") //NthI0IiY8r
 ```
 
 ## rand_text_numeric(length uint, optionalBadNumbers string) string
@@ -451,7 +451,7 @@ rand_text_alphanumeric(10, "ab12")
 生成给定长度的随机数字字符串，不包含可选的一组不需要的数字。
 
 ```go
-rand_text_numeric(10, 123)
+rand_text_numeric(10, 123) //0654087985
 ```
 
 ## regex(pattern, input string) bool
@@ -459,7 +459,7 @@ rand_text_numeric(10, 123)
 针对输入字符串测试给定的正则表达式。
 
 ```go
-regex("H([a-z]+)o", "Hello")
+regex("H([a-z]+)o", "Hello") //true
 ```
 
 ## repeat(str string, count uint) string
@@ -467,7 +467,7 @@ regex("H([a-z]+)o", "Hello")
 将输入字符串重复给定次数。
 
 ```go
-repeat("../", 5)
+repeat("../", 5) //../../../../../
 ```
 
 ## replace(str, old, new string) string
@@ -475,7 +475,7 @@ repeat("../", 5)
 替换给定输入中的给定子字符串。
 
 ```go
-replace("Hello", "He", "Ha")
+replace("Hello", "He", "Ha") //Hallo
 ```
 
 ## replace_regex(source, regex, replacement string) string
@@ -483,7 +483,7 @@ replace("Hello", "He", "Ha")
 替换输入中与给定正则表达式匹配的子字符串。
 
 ```go
-replace_regex("He123llo", "(\\d+)", "")
+replace_regex("He123llo", "(\\d+)", "") //Hello
 ```
 
 ## reverse(input string) string
@@ -491,7 +491,7 @@ replace_regex("He123llo", "(\\d+)", "")
 反转给定的输入。
 
 ```go
-reverse("abc")
+reverse("abc") //cba
 ```
 
 ## sha1(input interface) string
@@ -499,7 +499,7 @@ reverse("abc")
 计算输入的SHA1（安全哈希1）哈希。
 
 ```go
-sha1("Hello")
+sha1("Hello") //f7ff9e8b7bb2e09b70935a5d785e0cc5d9d0abf0
 ```
 
 ## sha256(input interface) string
@@ -507,7 +507,7 @@ sha1("Hello")
 计算输入的SHA256（安全哈希256）哈希。
 
 ```go
-sha256("Hello")
+sha256("Hello") //185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969
 ```
 
 ## starts_with(str string, prefix …string) bool
@@ -515,7 +515,7 @@ sha256("Hello")
 检查字符串是否以提供的任何子字符串开头。
 
 ```go
-starts_with("Hello", "He")
+starts_with("Hello", "He") //true
 ```
 
 ## to_lower(input string) string
@@ -523,7 +523,7 @@ starts_with("Hello", "He")
 将输入转换为小写字符。
 
 ```go
-to_lower("HELLO")
+to_lower("HELLO") //hello
 ```
 
 ## to_upper(input string) string
@@ -531,7 +531,7 @@ to_lower("HELLO")
 将输入转换为大写字符。
 
 ```go
-to_upper("hello")
+to_upper("hello") //HELLO
 ```
 
 ## trim(input, cutset string) string
@@ -539,7 +539,7 @@ to_upper("hello")
 返回一个已删除割集中包含的所有前导和尾随Unicode代码点的输入片段。
 
 ```go
-trim("aaaHelloddd", "ad")
+trim("aaaHelloddd", "ad") //Hello
 ```
 
 ## trim_left(input, cutset string) string
@@ -547,7 +547,7 @@ trim("aaaHelloddd", "ad")
 返回一个已删除割集中包含的所有前导Unicode代码点的输入片段。
 
 ```go
-trim_left("aaaHelloddd", "ad")
+trim_left("aaaHelloddd", "ad") //Helloddd
 ```
 
 ## trim_prefix(input, prefix string) string
@@ -555,7 +555,7 @@ trim_left("aaaHelloddd", "ad")
 返回没有提供前导前缀字符串的输入。
 
 ```go
-trim_prefix("aaHelloaa", "aa")
+trim_prefix("aaHelloaa", "aa") //Helloaa
 ```
 
 ## trim_right(input, cutset string) string
@@ -563,7 +563,7 @@ trim_prefix("aaHelloaa", "aa")
 返回一个字符串，删除了剪切集中包含的所有尾随Unicode代码点。
 
 ```go
-trim_right("aaaHelloddd", "ad")
+trim_right("aaaHelloddd", "ad") //aaaHello
 ```
 
 ## trim_space(input string) string
@@ -571,7 +571,7 @@ trim_right("aaaHelloddd", "ad")
 返回一个字符串，其中删除了Unicode定义的所有前导和尾部空格。
 
 ```go
-trim_space(" Hello ")
+trim_space(" Hello ") //"Hello"
 ```
 
 ## trim_suffix(input, suffix string) string
@@ -579,7 +579,7 @@ trim_space(" Hello ")
 返回不带提供的尾部后缀字符串的输入。
 
 ```go
-trim_suffix("aaHelloaa", "aa")
+trim_suffix("aaHelloaa", "aa") //aaHello
 ```
 
 ## unix_time(optionalSeconds uint) float64
@@ -587,7 +587,7 @@ trim_suffix("aaHelloaa", "aa")
 返回当前Unix时间（自1970年1月1日UTC以来经过的秒数）以及添加的可选秒数。
 
 ```go
-unix_time(10)
+unix_time(10) //1639568278
 ```
 
 ## url_decode(input string) string
@@ -595,7 +595,7 @@ unix_time(10)
 URL对输入字符串进行解码。
 
 ```go
-url_decode("https:%2F%2Fprojectdiscovery.io%3Ftest=1")
+url_decode("https:%2F%2Fprojectdiscovery.io%3Ftest=1") //https://projectdiscovery.io?test=1
 ```
 
 ## url_encode(input string) string
@@ -603,7 +603,7 @@ url_decode("https:%2F%2Fprojectdiscovery.io%3Ftest=1")
 URL对输入字符串进行编码。
 
 ```go
-url_encode("https://projectdiscovery.io/test?a=1")
+url_encode("https://projectdiscovery.io/test?a=1") //https%3A%2F%2Fprojectdiscovery.io%2Ftest%3Fa%3D1
 ```
 
 ## wait_for(seconds uint)
