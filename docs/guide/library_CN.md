@@ -638,6 +638,33 @@ debug("%d %s %s",resp.status,resp.headers["Content-Type"],resp.body)
 
 
 
+# 库 - "json"
+
+```go
+json := import("json")
+```
+
+## 函数
+
+- `decode(b string/bytes) => object`: 分析JSON字符串并返回一个对象。
+- `encode(o object) => bytes`: 返回对象的JSON字符串（字节）。
+- `indent(b string/bytes, prefix string, indent string) => bytes`: 返回缩进形式的输入JSON字节字符串。
+- `html_escape(b string/bytes) => bytes`: 返回HTML安全形式的输入JSON字节字符串。
+
+## 例子
+
+```golang
+json := import("json")
+
+encoded := json.encode({a: 1, b: [2, 3, 4]})  // JSON-encoded bytes string
+indentded := json.indent(encoded, "", "  ")   // indented form
+html_safe := json.html_escape(encoded)        // HTML escaped form
+
+decoded := json.decode(encoded)               // {a: 1, b: [2, 3, 4]}
+```
+
+
+
 # 库 - "net"
 
 ```go
@@ -669,3 +696,26 @@ debug("data: %s",string(data))
 - `read_until(pattern string) => bytes/error`: 从套接字读取数据，直到正则表达式模式匹配。
 
 - `write_all(data bytes) => int/error`: 如果可能，将所有数据写入套接字，并返回写入长度。
+
+
+
+# 库 - "text"
+
+```golang
+text := import("text")
+```
+
+## 函数
+
+- `re_match(pattern string, text string) => bool/error`: 报告字符串text是否包含正则表达式pattern的任何匹配项。
+- `re_find(pattern string, text string, count int) => [[{text: string, begin: int, end: int}]]/nil`:返回一个包含所有匹配项的数组，每个匹配项都是包含匹配文本、开始和结束（独占）索引的映射对象的数组。
+- `re_replace(pattern string, text string, repl string) => string/error`:返回text 的副本，用替换字符串repl替换模式的匹配项。
+- `re_split(pattern string, text string, count int) => [string]/error`: 将text 分割成由表达式分隔的子字符串，并在这些表达式匹配之间返回子字符串的切片。
+- `re_compile(pattern string) => Regexp/error`: 解析正则表达式，如果成功，则返回可用于与文本匹配的Regexp对象。
+
+## 返回Regexp对象
+
+- `match(text string) => bool`: 报告字符串text是否包含正则表达式pattern的任何匹配项。
+- `find(text string, count int) => [[{text: string, begin: int, end: int}]]/nil`:返回一个包含所有匹配项的数组，每个匹配项都是包含匹配文本、开始和结束（独占）索引的映射对象的数组。
+- `replace(src string, repl string) => string`: 返回text 的副本，用替换字符串repl替换模式的匹配项。
+- `split(text string, count int) => [string]`: 将text 分割成由表达式分隔的子字符串，并在这些表达式匹配之间返回子字符串的切片。
