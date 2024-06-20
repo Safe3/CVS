@@ -4,5 +4,5 @@
 
 
 ### :apple: 为什么我的森罗无法自动获得SSL证书？ <!-- {docsify-ignore} -->
-?> 请将域名指向森罗所在服务器，并且Web服务的监听端口改为443。
+?> 请将域名指向森罗所在服务器，并将slwx/config.json中的domain设置为你要绑定的域名，Web服务的监听端口port改为443，然后访问 https://yourdomain 后才会自动申请let's encrypt免费证书，申请成功后会存放于slwx/cert目录。
 
