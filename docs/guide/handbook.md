@@ -55,5 +55,5 @@ ide.exe
 
 此图展示的是CVE-2022-46169无回显漏洞测试脚本的编写过程，图中提供了 **debug函数** 用于打印调试信息，该函数兼容go语言中fmt.Printf的用法，结果显示于下方方框。对于有回显的漏洞可以直接通过 **return true** 返回来确认漏洞存在，对于需要返回一些信息的场景，如密码破解等，可以return一个字符串来保存结果，结果位于CVS扫描器生成的result.json中的poc_info字段中。
 
-PoC脚本中的函数兼容Nuclei的帮助函数，详见[链接](https://docs.projectdiscovery.io/templates/reference/helper-functions) ，另外CVS也提供了网络请求相关lib库，详见[链接](https://github.com/Safe3/CVS/blob/main/library_CN.md) 。所以你可以较方便的将Nuclei的漏洞模板转换成CVS的PoC。更多PoC样例可参考CVS扫描器poc目录下的yaml文件。规则调试完毕后即可录入森罗攻击面管理平台。
+PoC脚本中的函数兼容Nuclei的帮助函数，另外CVS也提供了网络请求相关lib库，详见[链接](https://slwx.uusec.com/#/guide/library_CN) 。所以你可以较方便的将Nuclei的漏洞模板转换成CVS的PoC。更多PoC样例可参考CVS扫描器poc目录下的yaml文件。规则调试完毕后即可录入森罗攻击面管理平台。
 
