@@ -63,8 +63,10 @@ cvs结构体示例：
 {
   "host": "3.3.3.3",
   "port": "6379",
+  "address": "3.3.3.3:6379",
   "proto": "tcp",
   "service": "redis",
+  "url": "redis://3.3.3.3:6379",
   "product": "redis-server",
   "version": "5.0.7",
   "banner": "$3295\\r\\n# Server\\r\\nredis_version:5.0.7\\r\\nredis_git_sha1:00000000\\r\\nredis_git_dirty:0\\r\\nredis_build_id:636cde3b5c7a3923\\r\\nredis_mode:standalone\\r\\nos:Linux 5.4.260-1.el7.elrepo.x86_64 x86_64\\r\\narch_bits:64\\r\\nmultiplexing_api:epoll\\r\\natomicvar_api:atomic-builtin\\r\\ngcc_version:9.2.1\\r\\nprocess_id:1\\r\\nrun_id:58f63d1f79ea3d6556e90fd7bbd23954ccbd8671\\r\\ntcp_port:6379\\r\\nuptime_in_seconds:4111\\r\\nuptime_in_days:0\\r\\nhz:10\\r\\nconfigured_hz:10\\r\\nlru_clock:8750810\\r\\nexecutable:/redis-server\\r\\nconfig_file:/etc/redis/redis.conf\\r\\n\\r\\n# Clients\\r\\nconn",
