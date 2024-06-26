@@ -26,10 +26,10 @@ sudo $( command -v yum || command -v apt-get ) install -y ca-certificates
 curl https://slwx.uusec.com/download/slwx.tgz -o slwx.tgz && sudo tar -zxf slwx.tgz && rm -f ./slwx.tgz
 ```
 
-启动服务：
+后台运行：
 
 ```bash
-slwx/slwx &
+nohup slwx/slwx >/dev/null 2>&1 &
 ```
 
 修改配置文件slwx/config.json： 
