@@ -29,7 +29,7 @@ curl https://slwx.uusec.com/download/slwx.tgz -o slwx.tgz && sudo tar -zxf slwx.
 后台运行：
 
 ```bash
-nohup slwx/slwx >/dev/null 2>&1 &
+sudo nohup slwx/slwx >/dev/null 2>&1 &
 ```
 
 修改配置文件slwx/config.json： 
