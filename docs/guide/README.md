@@ -23,10 +23,10 @@
 
 森罗为你提供了简单易用的Web后台管理界面，登录后所有管理操作都可以在浏览器中完成，如下：
 
-- 🪲 管理平台
+🪲 管理平台
 
 <img src="https://slwx.uusec.com/_media/slwx.png" class="sd"/>
 
-- 🐞 扫描任务
+🐞 扫描任务
 
 <img src="https://slwx.uusec.com/_media/task.png" class="sd"/>
