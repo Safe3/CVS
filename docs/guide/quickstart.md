@@ -23,7 +23,7 @@
 
 ```bash
 sudo $( command -v yum || command -v apt-get ) install -y ca-certificates
-curl https://slwx.uusec.com/download/slwx.tgz -o slwx.tgz && sudo tar -zxf slwx.tgz && rm -f ./slwx.tgz
+curl https://download.uusec.com/slwx.tgz -o slwx.tgz && sudo tar -zxf slwx.tgz && rm -f ./slwx.tgz
 ```
 
 后台运行：

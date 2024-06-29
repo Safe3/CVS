@@ -60,13 +60,13 @@
 
 字符串可以用单引号或双引号括起来。字符串可以包含转义序列，例如换行符的“\n”，`\t`表示制表符，`\uXXXX`表示Unicode代码点。
 
-```expr
+```go
 "Hello\nWorld"
 ```
 
 对于多行字符串，请使用反标记：
 
-```expr
+```go
 `Hello
 World`
 ```
@@ -143,21 +143,21 @@ World`
 
 结构的字段和映射的项可以用`.`访问运算符或“[]”运算符。接下来的两个表达式是等效的：
 
-```expr
+```go
 user.Name
 user["Name"]
 ```
 
 可以使用“[]”运算符访问数组和切片的元素。支持负索引，“-1”是最后一个元素。
 
-```expr
+```go
 array[0] // first element
 array[-1] // last element
 ```
 
 “in”运算符可用于检查项是否在数组或映射中。
 
-```expr
+```go
 "John" in ["John", "Jane"]
 "name" in {"name": "John", "age": 30}
 ```
@@ -166,13 +166,13 @@ array[-1] // last element
 
 这个运算符可用于访问结构的字段或映射的项，而无需检查该结构或映射是否为“nil”。如果结构或映射为“nil”，则表达式的结果为“nil”。
 
-```expr
+```go
 author.User?.Name
 ```
 
 等效于：
 
-```expr
+```go
 author.User != nil ? author.User.Name : nil
 ```
 
@@ -180,13 +180,13 @@ author.User != nil ? author.User.Name : nil
 
 这个运算符可用于返回不为“nil”的左侧，否则返回右侧。
 
-```expr
+```go
 author.User?.Name ?? "Anonymous"
 ```
 
 等效于：
 
-```expr
+```go
 author.User != nil ? author.User.Name : "Anonymous"
 ```
 
@@ -196,7 +196,7 @@ author.User != nil ? author.User.Name : "Anonymous"
 
 例如，变量**数组** `[1, 2, 3, 4, 5]`:
 
-```expr
+```go
 array[1:4] == [2, 3, 4]
 array[1:-1] == [2, 3, 4]
 array[:3] == [1, 2, 3]
@@ -208,13 +208,13 @@ array[:] == array
 
 管道运算符“|”可用于传递左侧表达式的结果作为右侧表达式的第一个参数。
 
-```expr
+```go
 user.Name | lower() | split(" ")
 ```
 
 等效于：
 
-```expr
+```go
 split(lower(user.Name), " ")
 ```
 
@@ -222,7 +222,7 @@ split(lower(user.Name), " ")
 
 范围运算符`..`可以用于创建一系列整数。
 
-```expr
+```go
 1..3 == [1, 2, 3]
 ```
 
@@ -230,13 +230,13 @@ split(lower(user.Name), " ")
 
 变量可以用“let”关键字声明。变量名必须以字母或下划线开头。变量名称可以包含字母、数字和下划线。声明变量后，就可以在表达式中使用该变量。
 
-```expr
+```go
 let x = 42; x * 2
 ```
 
 多个变量可以用分号分隔的“let”语句声明。
 
-```expr
+```go
 let x = 42; 
 let y = 2; 
 x * y
@@ -244,7 +244,7 @@ x * y
 
 以下是带有管道运算符的变量示例：
 
-```expr
+```go
 let name = user.Name | lower() | split(" "); 
 "Hello, " + name[0] + "!"
 ```
@@ -253,7 +253,7 @@ let name = user.Name | lower() | split(" ");
 
 “$env”变量是传递给表达式的所有变量的映射。
 
-```expr
+```go
 foo.Name == $env["foo"].Name
 $env["var with spaces"]
 ```
@@ -262,7 +262,7 @@ $env["var with spaces"]
 
 “$env”可用于检查是否定义了变量：
 
-```expr
+```go
 'foo' in $env
 ```
 
@@ -271,26 +271,26 @@ $env["var with spaces"]
 断言是一个表达式。断言可以用于“filter”、“all”、“any”、“one”、“none”等函数。
 例如，下一个表达式创建一个从0到9的新数组，然后按偶数进行筛选：
 
-```expr
+```go
 filter(0..9, {# % 2 == 0})
 ```
 
 如果数组的项是结构或映射，则可以访问带有省略的“#”符号的字段（“#.Value”变为“.Value’”）。
 
-```expr
+```go
 filter(tweets, {len(.Content) > 240})
 ```
 
 大括号“｛` `｝”可以省略：
 
-```expr
+```go
 filter(tweets, len(.Content) > 240)
 ```
 
 提示
 在嵌套谓词中，要访问外部变量，请使用[variables]（#variables）。
 
-```expr
+```go
 filter(posts, {
     let post = #; 
     any(.Comments, .Author == post.Author)
@@ -305,7 +305,7 @@ filter(posts, {
 
 删除字符串“str”两端的空白。如果给定了可选的“chars”参数，则它是一个指定要删除的字符集的字符串。
 
-```expr
+```go
 trim("  Hello  ") == "Hello"
 trim("__Hello__", "_") == "Hello"
 ```
@@ -314,7 +314,7 @@ trim("__Hello__", "_") == "Hello"
 
 从字符串“str”中删除指定的前缀（如果该字符串以该前缀开头）。
 
-```expr
+```go
 trimPrefix("HelloWorld", "Hello") == "World"
 ```
 
@@ -322,7 +322,7 @@ trimPrefix("HelloWorld", "Hello") == "World"
 
 如果字符串“str”以指定的后缀结尾，则从该字符串中删除该后缀。
 
-```expr
+```go
 trimSuffix("HelloWorld", "World") == "Hello"
 ```
 
@@ -330,7 +330,7 @@ trimSuffix("HelloWorld", "World") == "Hello"
 
 将字符串“str”中的所有字符转换为大写。
 
-```expr
+```go
 upper("hello") == "HELLO"
 ```
 
@@ -338,7 +338,7 @@ upper("hello") == "HELLO"
 
 将字符串“str”中的所有字符转换为小写。
 
-```expr
+```go
 lower("HELLO") == "hello"
 ```
 
@@ -346,7 +346,7 @@ lower("HELLO") == "hello"
 
 在分隔符的每个实例处拆分字符串“str”，并返回一个子字符串数组。
 
-```expr
+```go
 split("apple,orange,grape", ",") == ["apple", "orange", "grape"]
 split("apple,orange,grape", ",", 2) == ["apple", "orange,grape"]
 ```
@@ -355,7 +355,7 @@ split("apple,orange,grape", ",", 2) == ["apple", "orange,grape"]
 
 在分隔符的每个实例后面拆分字符串“str”。
 
-```expr
+```go
 splitAfter("apple,orange,grape", ",") == ["apple,", "orange,", "grape"]
 splitAfter("apple,orange,grape", ",", 2) == ["apple,", "orange,grape"]
 ```
@@ -364,7 +364,7 @@ splitAfter("apple,orange,grape", ",", 2) == ["apple,", "orange,grape"]
 
 将字符串“str”中所有出现的“old”替换为“new”。
 
-```expr
+```go
 replace("Hello World", "World", "Universe") == "Hello Universe"
 ```
 
@@ -372,7 +372,7 @@ replace("Hello World", "World", "Universe") == "Hello Universe"
 
 重复字符串“str”“n”次。
 
-```expr
+```go
 repeat("Hi", 3) == "HiHiHi"
 ```
 
@@ -380,7 +380,7 @@ repeat("Hi", 3) == "HiHiHi"
 
 返回字符串“str”中第一个出现的子字符串的索引，如果未找到，则返回-1。
 
-```expr
+```go
 indexOf("apple pie", "pie") == 6
 ```
 
@@ -388,7 +388,7 @@ indexOf("apple pie", "pie") == 6
 
 返回字符串“str”中最后一个出现的子字符串的索引，如果未找到，则返回-1。
 
-```expr
+```go
 lastIndexOf("apple pie apple", "apple") == 10
 ```
 
@@ -396,7 +396,7 @@ lastIndexOf("apple pie apple", "apple") == 10
 
 如果字符串“str”以给定前缀开头，则返回“true”。
 
-```expr
+```go
 hasPrefix("HelloWorld", "Hello") == true
 ```
 
@@ -404,7 +404,7 @@ hasPrefix("HelloWorld", "Hello") == true
 
 如果字符串“str”以给定后缀结尾，则返回“true”。
 
-```expr
+```go
 hasSuffix("HelloWorld", "World") == true
 ```
 
@@ -412,19 +412,19 @@ hasSuffix("HelloWorld", "World") == true
 
 可以减去两个日期，得到它们之间的间隔时间：
 
-```expr
+```go
 createdAt - now()
 ```
 
 可以为日期添加持续时间：
 
-```expr
+```go
 createdAt + duration("1h")
 ```
 
 并且可以比较日期：
 
-```expr
+```go
 createdAt > now() - duration("1h")
 ```
 
@@ -432,7 +432,7 @@ createdAt > now() - duration("1h")
 
 将当前日期返回为[time.time](https://pkg.go.dev/time#Time)值
 
-```expr
+```go
 now().Year() == 2024
 ```
 
@@ -442,7 +442,7 @@ now().Year() == 2024
 
 有效的时间单位为“ns”、“us”（或“µs”）、“ms”、“s”、“m”、“h”。
 
-```expr
+```go
 duration("1h").Seconds() == 3600
 ```
 
@@ -458,7 +458,7 @@ duration("1h").Seconds() == 3600
 - RFC850,
 - RFC1123,
 
-```expr
+```go
 date("2023-08-14")
 date("15:04:05")
 date("2023-08-14T00:00:00Z")
@@ -477,7 +477,7 @@ date("2023-08-14 00:00:00", "2006-01-02 15:04:05", "Europe/Zurich")
 - `YearDay()` 
 - and [more](https://pkg.go.dev/time#Time).
 
-```expr
+```go
 date("2023-08-14").Year() == 2023
 ```
 
@@ -485,14 +485,14 @@ date("2023-08-14").Year() == 2023
 
 返回给定字符串“str”的时区。可用时区列表可在[此处](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)找到.
 
-```expr
+```go
 timezone("Europe/Zurich")
 timezone("UTC")
 ```
 
 要将日期转换为其他时区，请使用[`In()`](https://pkg.go.dev/time#Time.In)方法
 
-```expr
+```go
 date("2023-08-14 00:00:00").In(timezone("Europe/Zurich"))
 ```
 
@@ -502,7 +502,7 @@ date("2023-08-14 00:00:00").In(timezone("Europe/Zurich"))
 
 返回两个数字“n1”和“n2”中的最大值。
 
-```expr
+```go
 max(5, 7) == 7
 ```
 
@@ -510,7 +510,7 @@ max(5, 7) == 7
 
 返回两个数字“n1”和“n2”中的最小值。
 
-```expr
+```go
 min(5, 7) == 5
 ```
 
@@ -518,7 +518,7 @@ min(5, 7) == 5
 
 返回一个数字的绝对值。
 
-```expr
+```go
 abs(-5) == 5
 ```
 
@@ -526,7 +526,7 @@ abs(-5) == 5
 
 返回大于或等于x的最小整数值。
 
-```expr
+```go
 ceil(1.5) == 2.0
 ```
 
@@ -534,7 +534,7 @@ ceil(1.5) == 2.0
 
 返回小于或等于x的最大整数值。
 
-```expr
+```go
 floor(1.5) == 1.0
 ```
 
@@ -542,7 +542,7 @@ floor(1.5) == 1.0
 
 返回最接近的整数，从零开始取整一半。
 
-```expr
+```go
 round(1.5) == 2.0
 ```
 
@@ -552,7 +552,7 @@ round(1.5) == 2.0
 
 如果所有元素都满足 [断言](#断言)，则返回**true**。如果数组为空，则返回**true**。
 
-```expr
+```go
 all(tweets, {.Size < 280})
 ```
 
@@ -560,7 +560,7 @@ all(tweets, {.Size < 280})
 
 如果任一元素满足 [断言](#断言)，则返回**true**。如果数组为空，则返回**false**。
 
-```expr
+```go
 any(tweets, {.Size > 280})
 ```
 
@@ -568,7 +568,7 @@ any(tweets, {.Size > 280})
 
 如果恰好有一个元素满足 [断言](#断言)，则返回**true**。如果数组为空，则返回**false**。
 
-```expr
+```go
 one(participants, {.Winner})
 ```
 
@@ -576,7 +576,7 @@ one(participants, {.Winner})
 
 如果所有元素都不满足 [断言](#断言)，则返回**true**。如果数组为空，则返回**true**。
 
-```expr
+```go
 none(tweets, {.Size > 280})
 ```
 
@@ -584,7 +584,7 @@ none(tweets, {.Size > 280})
 
 通过将 [断言](#断言) 应用于数组的每个元素来返回新数组。
 
-```expr
+```go
 map(tweets, {.Size})
 ```
 
@@ -592,7 +592,7 @@ map(tweets, {.Size})
 
 通过 [断言](#断言) 过滤数组的元素，返回新数组。
 
-```expr
+```go
 filter(users, .Name startsWith "J")
 ```
 
@@ -600,7 +600,7 @@ filter(users, .Name startsWith "J")
 
 查找数组中满足 [断言](#断言) 的第一个元素。
 
-```expr
+```go
 find([1, 2, 3, 4], # > 2) == 3
 ```
 
@@ -608,7 +608,7 @@ find([1, 2, 3, 4], # > 2) == 3
 
 查找数组中满足 [断言](#断言) 的第一个元素索引。
 
-```expr
+```go
 findIndex([1, 2, 3, 4], # > 2) == 2
 ```
 
@@ -616,7 +616,7 @@ findIndex([1, 2, 3, 4], # > 2) == 2
 
 查找数组中满足 [断言](#断言) 的最后一个元素。
 
-```expr
+```go
 findLast([1, 2, 3, 4], # > 2) == 4
 ```
 
@@ -624,7 +624,7 @@ findLast([1, 2, 3, 4], # > 2) == 4
 
 查找数组中满足 [断言](#断言) 的最后一个元素索引。
 
-```expr
+```go
 findLastIndex([1, 2, 3, 4], # > 2) == 3
 ```
 
@@ -632,7 +632,7 @@ findLastIndex([1, 2, 3, 4], # > 2) == 3
 
 根据 [断言](#断言) 的结果对数组的元素进行分组。
 
-```expr
+```go
 groupBy(users, .Age)
 ```
 
@@ -640,19 +640,19 @@ groupBy(users, .Age)
 
 返回满足 [断言](#断言) 的元素数。
 
-```expr
+```go
 count(users, .Age > 18)
 ```
 
 相当于：
 
-```expr
+```go
 len(filter(users, .Age > 18))
 ```
 
 如果未给定 [断言](#断言) ，则返回数组中“true”元素的数量。
 
-```expr
+```go
 count([true, false, true]) == 2
 ```
 
@@ -660,7 +660,7 @@ count([true, false, true]) == 2
 
 连接两个或多个数组。
 
-```expr
+```go
 concat([1, 2], [3, 4]) == [1, 2, 3, 4]
 ```
 
@@ -668,7 +668,7 @@ concat([1, 2], [3, 4]) == [1, 2, 3, 4]
 
 使用给定的分隔符将一个字符串数组合并为一个字符串。如果未给定分隔符，则使用空字符串。
 
-```expr
+```go
 join(["apple", "orange", "grape"], ",") == "apple,orange,grape"
 join(["apple", "orange", "grape"]) == "appleorangegrape"
 ```
@@ -683,7 +683,7 @@ join(["apple", "orange", "grape"]) == "appleorangegrape"
 - `#acc` - 累加器
 - `#index` - 当前元素的索引
 
-```expr
+```go
 reduce(1..9, #acc + #)
 reduce(1..9, #acc + #, 0)
 ```
@@ -692,19 +692,19 @@ reduce(1..9, #acc + #, 0)
 
 返回数组中所有数字的总和。
 
-```expr
+```go
 sum([1, 2, 3]) == 6
 ```
 
 如果给定了可选的 [断言](#断言) 参数，则它是在求和之前应用于数组的每个元素的 [断言](#断言) 。
 
-```expr
+```go
 sum(accounts, .Balance)
 ```
 
 相当于：
 
-```expr
+```go
 reduce(accounts, #acc + .Balance, 0)
 // or
 sum(map(accounts, .Balance))
@@ -714,7 +714,7 @@ sum(map(accounts, .Balance))
 
 返回数组中所有数字的平均值。
 
-```expr
+```go
 mean([1, 2, 3]) == 2.0
 ```
 
@@ -722,7 +722,7 @@ mean([1, 2, 3]) == 2.0
 
 返回数组中所有数字的中值。
 
-```expr
+```go
 median([1, 2, 3]) == 2.0
 ```
 
@@ -730,7 +730,7 @@ median([1, 2, 3]) == 2.0
 
 返回数组中的第一个元素。如果数组为空，则返回“nil”。
 
-```expr
+```go
 first([1, 2, 3]) == 1
 ```
 
@@ -738,7 +738,7 @@ first([1, 2, 3]) == 1
 
 返回数组中的最后一个元素。如果数组为空，则返回“nil”。
 
-```expr
+```go
 last([1, 2, 3]) == 3
 ```
 
@@ -746,7 +746,7 @@ last([1, 2, 3]) == 3
 
 返回数组中的前“n”个元素。如果数组的元素少于“n”个，则返回整个数组。
 
-```expr
+```go
 take([1, 2, 3, 4], 2) == [1, 2]
 ```
 
@@ -754,7 +754,7 @@ take([1, 2, 3, 4], 2) == [1, 2]
 
 返回数组的新反转副本。
 
-```expr
+```go
 reverse([3, 1, 4]) == [4, 1, 3]
 reverse(reverse([3, 1, 4])) == [3, 1, 4]
 ```
@@ -763,7 +763,7 @@ reverse(reverse([3, 1, 4])) == [3, 1, 4]
 
 按升序对数组进行排序。可选的“order”参数可用于指定排序顺序：“asc”或“desc”。
 
-```expr
+```go
 sort([3, 1, 4]) == [1, 3, 4]
 sort([3, 1, 4], "desc") == [4, 3, 1]
 ```
@@ -772,7 +772,7 @@ sort([3, 1, 4], "desc") == [4, 3, 1]
 
 根据 [断言](#断言) 的结果对数组进行排序。可选的“order”参数可用于指定排序顺序：“asc”或“desc”。
 
-```expr
+```go
 sortBy(users, .Age)
 sortBy(users, .Age, "desc")
 ```
@@ -783,7 +783,7 @@ sortBy(users, .Age, "desc")
 
 返回一个数组，该数组包含映射的键。
 
-```expr
+```go
 keys({"name": "John", "age": 30}) == ["name", "age"]
 ```
 
@@ -791,7 +791,7 @@ keys({"name": "John", "age": 30}) == ["name", "age"]
 
 返回一个包含映射值的数组。
 
-```expr
+```go
 values({"name": "John", "age": 30}) == ["John", 30]
 ```
 
@@ -812,7 +812,7 @@ values({"name": "John", "age": 30}) == ["John", 30]
 
 对于命名类型和结构，将返回类型名称。
 
-```expr
+```go
 type(42) == "int"
 type("hello") == "string"
 type(now()) == "time.Time"
@@ -822,7 +822,7 @@ type(now()) == "time.Time"
 
 返回数字或字符串的整数值。
 
-```expr
+```go
 int("123") == 123
 ```
 
@@ -830,7 +830,7 @@ int("123") == 123
 
 返回数字或字符串的浮点值。
 
-```expr
+```go
 float("123.45") == 123.45
 ```
 
@@ -838,7 +838,7 @@ float("123.45") == 123.45
 
 将给定的值“v”转换为字符串表示形式。
 
-```expr
+```go
 string(123) == "123"
 ```
 
@@ -846,7 +846,7 @@ string(123) == "123"
 
 将给定的值“v”转换为其JSON字符串表示形式。
 
-```expr
+```go
 toJSON({"name": "John", "age": 30})
 ```
 
@@ -854,7 +854,7 @@ toJSON({"name": "John", "age": 30})
 
 解析给定的JSON字符串“v”并返回相应的值。
 
-```expr
+```go
 fromJSON('{"name": "John", "age": 30}')
 ```
 
@@ -862,7 +862,7 @@ fromJSON('{"name": "John", "age": 30}')
 
 将字符串“v”编码为Base64格式。
 
-```expr
+```go
 toBase64("Hello World") == "SGVsbG8gV29ybGQ="
 ```
 
@@ -870,7 +870,7 @@ toBase64("Hello World") == "SGVsbG8gV29ybGQ="
 
 将Base64编码的字符串“v”解码回其原始形式。
 
-```expr
+```go
 fromBase64("SGVsbG8gV29ybGQ=") == "Hello World"
 ```
 
@@ -878,7 +878,7 @@ fromBase64("SGVsbG8gV29ybGQ=") == "Hello World"
 
 将映射转换为键值对的数组。
 
-```expr
+```go
 toPairs({"name": "John", "age": 30}) == [["name", "John"], ["age", 30]]
 ```
 
@@ -886,7 +886,7 @@ toPairs({"name": "John", "age": 30}) == [["name", "John"], ["age", 30]]
 
 将键值对的数组转换为映射。
 
-```expr
+```go
 fromPairs([["name", "John"], ["age", 30]]) == {"name": "John", "age": 30}
 ```
 
@@ -896,7 +896,7 @@ fromPairs([["name", "John"], ["age", 30]]) == {"name": "John", "age": 30}
 
 返回数组、映射或字符串的长度。
 
-```expr
+```go
 len([1, 2, 3]) == 3
 len({"name": "John", "age": 30}) == 2
 len("Hello") == 5
@@ -906,7 +906,7 @@ len("Hello") == 5
 
 从数组或映射“v”中检索指定索引处的元素。如果索引超出范围，则返回“nil”。或者密钥不存在，返回“nil”。
 
-```expr
+```go
 get([1, 2, 3], 1) == 2
 get({"name": "John", "age": 30}, "name") == "John"
 ```
@@ -917,7 +917,7 @@ get({"name": "John", "age": 30}, "name") == "John"
 
 返回由逐位AND运算产生的值。
 
-```expr
+```go
 bitand(0b1010, 0b1100) == 0b1000
 ```
 
@@ -925,7 +925,7 @@ bitand(0b1010, 0b1100) == 0b1000
 
 返回由按位“或”运算产生的值。
 
-```expr
+```go
 bitor(0b1010, 0b1100) == 0b1110
 ```
 
@@ -933,7 +933,7 @@ bitor(0b1010, 0b1100) == 0b1110
 
 返回由逐位XOR运算产生的值。
 
-```expr
+```go
 bitxor(0b1010, 0b1100) == 0b110
 ```
 
@@ -941,7 +941,7 @@ bitxor(0b1010, 0b1100) == 0b110
 
 返回由逐位AND NOT运算产生的值。
 
-```expr
+```go
 bitnand(0b1010, 0b1100) == 0b10
 ```
 
@@ -949,7 +949,7 @@ bitnand(0b1010, 0b1100) == 0b10
 
 返回由按位NOT运算产生的值。
 
-```expr
+```go
 bitnot(0b1010) == -0b1011
 ```
 
@@ -957,7 +957,7 @@ bitnot(0b1010) == -0b1011
 
 返回左移操作产生的值。
 
-```expr
+```go
 bitshl(0b101101, 2) == 0b10110100
 ```
 
@@ -965,7 +965,7 @@ bitshl(0b101101, 2) == 0b10110100
 
 返回右移操作产生的值。
 
-```expr
+```go
 bitshr(0b101101, 2) == 0b1011
 ```
 
@@ -973,6 +973,6 @@ bitshr(0b101101, 2) == 0b1011
 
 返回无符号右移操作产生的值。
 
-```expr
+```go
 bitushr(-0b101, 2) == 4611686018427387902
 ```
