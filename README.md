@@ -2,7 +2,7 @@
   <br>
   <a href="https://www.uusec.com">CVS</a>
 </h1>
-<h4 align="center">万象漏洞扫描器</h4>
+<h4 align="center">森罗万象攻击面管理平台</h4>
 
 <p align="center">
 <a href="https://github.com/Safe3/CVS/releases"><img src="https://img.shields.io/github/downloads/Safe3/CVS/total">
@@ -36,7 +36,7 @@
 # 产品简介
 
 
-> **森罗**是有安科技推出的一款全新综合网络安全攻击面管理平台，集网络空间测绘与漏洞扫描于一体。森罗自带万象漏洞扫描器，与Nessus和Nuclei等许多产品一样，但它更现代，具有免等待的OOB测试策略、高级漏洞PoC IDE和强大的VDSL（漏洞域特定语言）引擎，使您能够轻松快速地扫描几乎所有漏洞。
+> **森罗万象**是有安科技推出的一款全新综合网络安全攻击面管理平台，集网络空间测绘与漏洞扫描于一体。森罗自带万象漏洞扫描器，与Nessus和Nuclei等许多产品一样，但它更现代，具有免等待的OOB测试策略、高级漏洞PoC IDE和强大的VDSL（漏洞域特定语言）引擎，使您能够轻松快速地扫描几乎所有漏洞。
 
 
 ## :dart: 技术优势 <!-- {docsify-ignore} -->
