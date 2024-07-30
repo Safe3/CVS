@@ -70,7 +70,7 @@
 
 ## 使用
 
-请访问官网https://slwx.uusec.com/查看详细使用文档。
+请访问官网 https://slwx.uusec.com/ 获取更多详细使用文档。
 
 
 
