@@ -46,7 +46,7 @@ sudo nohup slwx/slwx >/dev/null 2>&1 &
 }
 ```
 
-使配置生效： 
+配置重载命令： 
 ```bash
 slwx/slwx -reload
 ```
