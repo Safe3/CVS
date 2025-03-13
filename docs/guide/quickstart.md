@@ -32,7 +32,7 @@ curl https://download.uusec.com/slwx.tgz -o slwx.tgz && sudo tar -zxf slwx.tgz &
 sudo nohup slwx/slwx >/dev/null 2>&1 &
 ```
 
-修改配置文件slwx/config.json： 
+配置文件slwx/config.json说明： 
 ```json
 {
  "ip": "0.0.0.0",                               //管理端绑定的ip
@@ -53,7 +53,11 @@ slwx/slwx -reload
 
 ?>登录管理后台：
 
-1.将域名dns指向森罗服务器ip
+1.将域名dns指向森罗服务器ip。
 
-2.访问http://yourdomain ，默认登录用户名admin，密码Passw0rd!。
+2.访问http://yourdomain ，默认登录用户名admin，密码Passw0rd! 。
+
+3.进入任务管理菜单，新建网络空间测绘任务，等待任务结束后即可在资产管理界面看到所有测绘到的资产信息。
+
+4.进入任务管理菜单，新建Nuclei漏洞扫描任务，等待任务结束后即可在漏洞管理界面看到所有扫描到的漏洞信息。
 
