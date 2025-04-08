@@ -32,7 +32,7 @@ curl https://download.uusec.com/slwx.tgz -o slwx.tgz && sudo tar -zxf slwx.tgz &
 sudo nohup slwx/slwx >/dev/null 2>&1 &
 ```
 
-配置文件slwx/config.json说明： 
+软件运行后会自动生成配置文件slwx/config.json，相关说明如下： 
 ```json
 {
  "ip": "0.0.0.0",                               //管理端绑定的ip
@@ -46,7 +46,7 @@ sudo nohup slwx/slwx >/dev/null 2>&1 &
 }
 ```
 
-配置重载命令： 
+如有修改配置，可以执行如下命令使配置生效： 
 ```bash
 slwx/slwx -reload
 ```
