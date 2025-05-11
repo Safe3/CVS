@@ -148,6 +148,11 @@ If you have an idea or some kind of improvement, you are welcome to contribute a
 
 <p><span style="unicode-bidi: bidi-override; direction: rtl;">moc.cesuu@troppus</span></p>
 
+- WeChat Group:  Scan the following QR code to join
+
+  <img src="https://waf.uusec.com/_media/weixin.jpg" alt="WeChat"  height="200px" />
+
+
 
 
 ## License
