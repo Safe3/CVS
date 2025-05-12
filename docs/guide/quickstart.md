@@ -29,7 +29,7 @@ sudo bash -c "$(curl -fsSL https://slwx.uusec.com/installer_cn.sh)"
 
 **快速入门：**
 
-1.访问http://ip:10203 ，默认登录用户名admin，密码Passw0rd! 。
+1.访问http://ip:10203 ，默认登录用户名"admin"，密码"#Passw0rd" 。
 
 2.进入任务管理菜单，新建网络空间测绘任务，等待任务结束后即可在资产管理界面看到所有测绘到的资产信息。
 
