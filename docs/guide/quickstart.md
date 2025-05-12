@@ -27,7 +27,7 @@ sudo bash -c "$(curl -fsSL https://slwx.uusec.com/installer_cn.sh)"
 
 
 
-?>快速入门：
+**快速入门：**
 
 1.访问http://ip:10203 ，默认登录用户名admin，密码Passw0rd! 。
 
