@@ -94,8 +94,6 @@ CVS提供了大量功能，有助于安全工程师在其组织中自定义工�
 
 ## 联系
 
-<p><span style="unicode-bidi: bidi-override; direction: rtl;">moc.cesuu@troppus</span></p>
-
 - 官方 QQ 群：11500614
 
 - 官方微信群：微信扫描以下二维码加入
