@@ -19,13 +19,15 @@
 ## :rocket: 安装使用 <!-- {docsify-ignore} -->
 ?> 森罗安装及其简便，通常在几分钟内即可安装完毕，具体耗时视网络下载情况而定。
 
-一键安装：
+**一键安装：**
 
 ```bash
-sudo bash -c "$(curl -fsSL https://om.uusec.com/installer_cn.sh)"
+sudo bash -c "$(curl -fsSL https://slwx.uusec.com/installer_cn.sh)"
 ```
 
-?>登录管理后台：
+
+
+?>快速入门：
 
 1.将域名dns指向森罗服务器ip。
 
@@ -34,4 +36,12 @@ sudo bash -c "$(curl -fsSL https://om.uusec.com/installer_cn.sh)"
 3.进入任务管理菜单，新建网络空间测绘任务，等待任务结束后即可在资产管理界面看到所有测绘到的资产信息。
 
 4.进入任务管理菜单，新建Nuclei漏洞扫描任务，等待任务结束后即可在漏洞管理界面看到所有扫描到的漏洞信息。
+
+
+
+**产品卸载：**
+
+```bash
+sudo systemctl stop slwx && sudo /opt/slwx/slwx -s uninstall && sudo rm -rf /opt/slwx
+```
 
