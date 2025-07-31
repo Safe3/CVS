@@ -84,7 +84,6 @@
 
 [OpenResty Manager](https://github.com/Safe3/openresty-manager) - 最简单易用、功能强大、漂亮的主机管理面板，OpenResty Edge 的开源替代品。
 
-[萤火虫](https://github.com/Safe3/firefly) -  最简单易用的 WireGuard VPN 服务器。
 
 
 
